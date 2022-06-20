@@ -1,0 +1,10 @@
+mumble:
+  motd: "Sweet, its running i think" 
+  port: 64738
+  rootchannelname: "Battalion Network"
+  serverpassword: "SERVERPASSWORD"
+
+slack:
+  post: True
+  channel-name: "takserver"
+  api-key: <webhook-api-key>

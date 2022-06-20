@@ -1,0 +1,61 @@
+grafana:
+  version: latest
+  config:
+    server:
+      protocol: http
+      http_port: 3000
+      domain: external.example.com
+      root_url: http://external.example.com
+    analytics:
+      reporting_enabled: false
+    security:
+      admin_user: admin
+      admin_password: password
+    users:
+      allow_sign_up: false
+    auth:
+      anonymous:
+        enabled: true
+        org_name: example.com
+        org_role: Viewer
+  provisioning:
+    dashboards_parent_path: /var/lib/grafana/dashboards
+    dashboards:
+      general:
+        apiVersion: 1
+        providers:
+         - name: 'default'
+           orgId: 1
+           folder: ''
+           type: file
+           options:
+             path: /var/lib/grafana/dashboards/general
+    datasources:
+      influxdb_telegraf:
+        apiVersion: 1
+        deleteDatasources:
+           - name: telegraf
+             orgId: 1
+        datasources:
+         - name: telegraf
+           type: influxdb
+           access: proxy
+           url: http://127.0.0.1:8086
+           database: telegraf
+           isDefault: true
+    notifiers:
+      a_dud:
+        apiVersion: 1
+    plugins:
+      worldping:
+        apiVersion: 1
+  dashboards:
+    general:
+      main:
+        {
+          "annotations": "example"
+        }    vmware:
+      vmware_overview:
+        {
+          "annotations": "example"
+        }

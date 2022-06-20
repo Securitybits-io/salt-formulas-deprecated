@@ -1,0 +1,32 @@
+influxdb:
+  config:
+    meta:
+      dir: /var/lib/influxdb/meta
+    data:
+      dir: /var/lib/influxdb/data
+      wal-dir: /var/lib/influxdb/wal
+      series-id-set-cache-size: 100
+    http:
+      enabled: true
+      bind-address: ":8086"
+    graphite:
+      - enabled: true
+        database: graphite
+        bind-address: ":2003"
+        protocol: tcp
+        templates:
+          - ".server.measurement.field*"
+  database:
+    - telegraf
+    - graphite
+  retention:
+    telegraf_rp:
+      name: telegraf_rp
+      database: telegraf
+      duration: 90d
+      replication: 1
+    graphite_rp:
+      name: graphite_rp
+      database: graphite
+      duration: 90d
+      replication: 1

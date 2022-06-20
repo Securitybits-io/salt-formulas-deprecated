@@ -1,0 +1,24 @@
+guacamole:
+    version: 1.3.0
+    user-mapping: |
+        <user-mapping>
+
+          <!-- Per-user authentication and config information -->
+          <authorize
+              username="USER"
+              password="MD5PASSWORD"
+              encoding="md5">
+            
+            <connection name="servername">
+              <protocol>rdp</protocol>
+              <param name="hostname">server</param>
+              <param name="port">3389</param>
+              <param name="username">SERVERUSER</param>
+              <param name="password">SERVERPASSWORD</param>
+              <param name="ignore-cert">true</param>
+              <param name="enable-drive">true</param>
+              <param name="drive-path">/shared-folder</param>
+              <param name="server-layout">sv-se-qwerty</param>
+            </connection>
+          </authorize>
+        </user-mapping>
